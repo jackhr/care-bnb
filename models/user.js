@@ -4,6 +4,32 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
 
+const reviewSchema = new Schema({
+  name: String,
+  rating: Number,
+  userFrom: {type: Schema.Types.ObjectId, ref: 'User'},
+  userFor: {type: Schema.Types.ObjectId, ref: 'User'}
+}, {
+  timestamps: true
+})
+
+const referralSchema = new Schema({
+  name: String,
+  phone_number: Number,
+  email: String,
+  userFor: {type: Schema.Types.ObjectId, ref: 'User'}
+}, {
+  timestamps: true
+})
+
+const experienceSchema = new Schema({
+  name: String,
+  time_spent: String,
+  description: String
+}, {
+  timestamps: true
+})
+
 const userSchema = new Schema({
   name: {type: String, required: true},
   email: {
@@ -18,7 +44,38 @@ const userSchema = new Schema({
     trim: true,
     minLength: 3,
     required: true
-  }
+  },
+  age: {
+    type: Number,
+    trim: true,
+    min: 18, //possibly update this based on casualness of platform
+    required: true
+  },
+  phone_number: {
+    type: Number,
+    trim: true,
+    minLength: 10,
+    required: true
+  },
+  profile_image: String,
+  AWS_KEY: String,
+  best_time: {
+    type: String,
+    trim: true,
+    required: true
+  },
+  location: { //can change this to an array of objects to accept full addresss form data
+    type: String,
+    required: true
+  },
+  rate: Number,
+  credentials: String,
+  linkedin: String,
+  facebook: String,
+  instagram: String,
+  reviews: [reviewSchema],
+  referrals: [referralSchema],
+  experiences: [experienceSchema]
 }, {
   timestamps: true,
   toJSON: {
