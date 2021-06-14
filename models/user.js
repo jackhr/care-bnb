@@ -4,31 +4,13 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
 
-const reviewSchema = new Schema({
-  name: String,
-  rating: Number,
-  userFrom: {type: Schema.Types.ObjectId, ref: 'User'},
-  userFor: {type: Schema.Types.ObjectId, ref: 'User'}
-}, {
-  timestamps: true
-})
-
-const referralSchema = new Schema({
-  name: String,
-  phone_number: Number,
-  email: String,
-  userFor: {type: Schema.Types.ObjectId, ref: 'User'}
-}, {
-  timestamps: true
-})
-
 const experienceSchema = new Schema({
   name: String,
   time_spent: String,
   description: String
 }, {
   timestamps: true
-})
+});
 
 const userSchema = new Schema({
   name: {type: String, required: true},
@@ -73,8 +55,6 @@ const userSchema = new Schema({
   linkedin: String,
   facebook: String,
   instagram: String,
-  reviews: [reviewSchema],
-  referrals: [referralSchema],
   experiences: [experienceSchema]
 }, {
   timestamps: true,
