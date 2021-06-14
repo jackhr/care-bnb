@@ -6,6 +6,7 @@ const logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
 
+const newItem = "hehe";
 const app = express();
 
 app.use(logger('dev'));

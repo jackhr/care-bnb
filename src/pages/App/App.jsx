@@ -23,6 +23,7 @@ export default function App() {
               <OrderHistoryPage />
             </Route>
             <Redirect to="/orders" />
+            {/* here lets redirect to profile page */}
           </Switch>
         </>
         :
