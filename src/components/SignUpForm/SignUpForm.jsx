@@ -7,6 +7,10 @@ export default class SignUpForm extends Component {
     email: '',
     password: '',
     confirm: '',
+    age: 0,
+    phone_number: '',
+    best_time: '',
+    location: '',
     error: ''
   };
 
@@ -49,6 +53,14 @@ export default class SignUpForm extends Component {
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
             <label>Confirm</label>
             <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
+            <label>Age</label>
+            <input type="number" name="age" value={this.state.age} onChange={this.handleChange} required />
+            <label>Phone Number</label>
+            <input type="text" name="phone_number" value={this.state.phone_number} onChange={this.handleChange} required />
+            <label>Best Time To Be Reached</label>
+            <input type="text" name="best_time" value={this.state.best_time} onChange={this.handleChange} required />
+            <label>Location (City, State)</label>
+            <input type="text" name="location" value={this.state.location} onChange={this.handleChange} required />
             <button type="submit" disabled={disable}>SIGN UP</button>
           </form>
         </div>

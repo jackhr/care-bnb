@@ -34,9 +34,9 @@ const userSchema = new Schema({
     required: true
   },
   phone_number: {
-    type: Number,
+    type: String,
     trim: true,
-    minLength: 10,
+    minlength: 10,
     required: true
   },
   profile_image: String,
