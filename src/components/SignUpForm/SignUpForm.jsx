@@ -8,17 +8,10 @@ export default class SignUpForm extends Component {
     email: '',
     password: '',
     confirm: '',
-    age: 0,
+    age: '',
     phone_number: '',
     best_time: '',
     location: '',
-    rate: '',
-    credentials: '',
-    linkedin: '',
-    facebook: '',
-    instagram: '',
-    about: '',
-    profile_image: '',
     error: ''
   };
 
