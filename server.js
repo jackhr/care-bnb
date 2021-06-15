@@ -2,12 +2,35 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 require('dotenv').config();
 require('./config/database');
 
-const newItem = "hehe";
-const app = express();
+let users = []
+io.on('connection', socket => {
+  console.log("Hello from the Server! Socket ID: "+socket.id);
+  users.push(socket.id)
+  io.emit("userList", users)
+  console.log("Users afters connection: ", users)
+
+  socket.on("updateUsers", () => {
+    io.emit("userList", users)
+  })
+
+  socket.on("newMessage", newMessage => {
+    console.log(("Just arrived: ", newMessage));
+    io.emit("newMessage", newMessage)
+  })
+  
+  socket.on("disconnect", () => {
+      users = users.filter(user => user !== socket.id)
+      io.emit("userList", users)
+      console.log("Users after disconnection: ", users);
+  })
+})
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,6 +53,11 @@ app.get('/*', function(req, res) {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, function() {
+
+/* app.listen(port, function() {
   console.log(`Express app running on port ${port}`);
+}); */
+
+server.listen(port, () => {
+	console.log(`App listening at http://localhost:${port}`);
 });
