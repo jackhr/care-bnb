@@ -1,33 +1,39 @@
 import { useEffect, useState } from "react";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
+import * as usersAPI from "../../utilities/users-api";
 
 export default function CaregiverPage() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/profile")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-        setError(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    async function getAllCaregivers() {
+      const caregivers = await usersAPI.getAllCaregivers();
+      setData(caregivers);
+    }
+    getAllCaregivers();
+    // fetch("http://localhost:3001/profile")
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     }
+    //     throw response;
+    //   })
+    //   .then((data) => {
+    //     setData(data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching data: ", error);
+    //     setError(error);
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //   });
   }, []);
 
-  if (loading) return "Loading...";
-  if (error) return "Error!";
+  // if (loading) return "Loading...";
+  // if (error) return "Error!";
 
   return (
     <div className="caregiver">

@@ -1,11 +1,12 @@
-const User = require('../../models/user');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const User = require("../../models/user");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   create,
   login,
-  checkToken
+  checkToken,
+  getAll,
 };
 
 function checkToken(req, res) {
@@ -21,7 +22,7 @@ async function create(req, res) {
     const token = createJWT(user);
     // Yes, we can send back a simple string
     res.json(token);
-  } catch(err) {
+  } catch (err) {
     // Client will check for non-200 status code
     // 400 = Bad Request
     res.status(400).json(err);
@@ -34,9 +35,19 @@ async function login(req, res) {
     if (!user) throw new Error();
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
-    res.json( createJWT(user) );
+    res.json(createJWT(user));
   } catch {
-    res.status(400).json('Bad Credentials');
+    res.status(400).json("Bad Credentials");
+  }
+}
+
+async function getAll(req, res) {
+  try {
+    const allCaregivers = await User.find({});
+    res.send(allCaregivers);
+    console.log(allCaregivers);
+  } catch {
+    res.status(400).json("Caregivers not found");
   }
 }
 
@@ -47,6 +58,6 @@ function createJWT(user) {
     // data payload
     { user },
     process.env.SECRET,
-    { expiresIn: '24h' }
+    { expiresIn: "24h" }
   );
 }
