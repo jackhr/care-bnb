@@ -13,23 +13,6 @@ export default function CaregiverPage() {
       setData(caregivers);
     }
     getAllCaregivers();
-    // fetch("http://localhost:3001/profile")
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       return response.json();
-    //     }
-    //     throw response;
-    //   })
-    //   .then((data) => {
-    //     setData(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data: ", error);
-    //     setError(error);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
   }, []);
 
   // if (loading) return "Loading...";

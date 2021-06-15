@@ -3,12 +3,11 @@ const path = require("path");
 const favicon = require("serve-favicon");
 const cors = require("cors");
 const logger = require("morgan");
-const User = require("./models/user");
+const upload = require('multer')();
 
 require("dotenv").config();
 require("./config/database");
 
-const newItem = "hehe";
 const app = express();
 
 app.use(logger("dev"));
@@ -23,7 +22,7 @@ app.use(cors());
 app.use(require("./config/checkToken"));
 
 // Put API routes here, before the "catch all" route
-app.use("/api/users", require("./routes/api/users"));
+app.use("/api/users", upload.single("profile_image"), require("./routes/api/users"));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
