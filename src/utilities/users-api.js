@@ -18,6 +18,10 @@ export function allUsers() {
   return sendRequest(`${BASE_URL}/all`);
 }
 
+export function currentUser() {
+  return sendRequest(`${BASE_URL}/current`);
+}
+
 export function getAllCaregivers() {
   return sendRequest(BASE_URL);
 }
