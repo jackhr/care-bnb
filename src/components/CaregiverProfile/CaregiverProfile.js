@@ -16,7 +16,21 @@ export default function caregiverProfile({
   facebook,
   instagram,
   profile_image,
-}) {
+}) 
+
+/* values removed from sign up that strictly relate to caregivers
+
+rate: '',
+credentials: '',
+linkedin: '',
+facebook: '',
+instagram: '',
+about: '',
+profile_image: ''
+
+*/
+
+{
   return (
     <div className="profile-container">
       <h1>
