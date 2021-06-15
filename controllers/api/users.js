@@ -1,11 +1,8 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const uuid = require('uuid');
-const {
-  S3Client,
-  PutObjectCommand,
-} = require("@aws-sdk/client-s3");
+const uuid = require("uuid");
+const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const BASE_URL = process.env.S3_BASE_URL;
 const BUCKET = process.env.S3_BUCKET;
 const REGION = process.env.REGION;
@@ -16,6 +13,7 @@ module.exports = {
   checkToken,
   allUsers,
   getAll,
+  currentUser,
 };
 
 function checkToken(req, res) {
@@ -29,7 +27,7 @@ async function create(req, res) {
   try {
     console.log(req.file);
     const AWSData = await getNewImageUrl(req.file);
-    console.log('here 0', AWSData.url);
+    console.log("here 0", AWSData.url);
     const user = await User.create({
       ...req.body,
       AWS_KEY: AWSData.key,
@@ -67,13 +65,23 @@ async function getAll(req, res) {
   }
 }
 
-async function allUsers(req,res) {
+async function allUsers(req, res) {
   try {
     const allUsers = await User.find({});
-    console.log(allUsers)
-    res.json(allUsers)
-  } catch(e) {
-    res.status(400).json(e)
+    console.log(allUsers);
+    res.json(allUsers);
+  } catch (e) {
+    res.status(400).json(e);
+  }
+}
+
+async function currentUser(req, res) {
+  try {
+    const currentUser = await User.findById({});
+    console.log(currentUser);
+    res.json(currentUser);
+  } catch (e) {
+    res.status(400).json(e);
   }
 }
 
@@ -91,8 +99,8 @@ function createJWT(user) {
 /*-----Helper Functions-----*/
 
 function generateAWSKey(photo) {
-  const hex = uuid.v4().slice(uuid.v4().length-6);
-  const fileExtension = photo.mimetype.match(/[/](.*)/)[1].replace('', '.');
+  const hex = uuid.v4().slice(uuid.v4().length - 6);
+  const fileExtension = photo.mimetype.match(/[/](.*)/)[1].replace("", ".");
   return hex + fileExtension;
 }
 
@@ -100,9 +108,9 @@ async function getNewImageUrl(photo) {
   const uploadParams = {
     Bucket: BUCKET,
     Key: generateAWSKey(photo),
-    Body: photo.buffer
-  }
-  console.log('here in AWS function');
+    Body: photo.buffer,
+  };
+  console.log("here in AWS function");
   const s3 = new S3Client({ region: REGION });
   const run = async () => {
     try {
@@ -116,5 +124,5 @@ async function getNewImageUrl(photo) {
   return {
     url: `${BASE_URL}${BUCKET}/${uploadParams.Key}`,
     key: uploadParams.Key,
-  } 
+  };
 }
