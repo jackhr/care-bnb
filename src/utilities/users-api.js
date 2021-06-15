@@ -14,6 +14,10 @@ export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
 
+export function allUsers() {
+  return sendRequest(`${BASE_URL}/all`);
+}
+
 export function getAllCaregivers() {
   return sendRequest(BASE_URL);
 }

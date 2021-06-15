@@ -54,3 +54,6 @@ export function checkToken() {
     .then(dateStr => new Date(dateStr));
 }
 
+export function allUsers() {
+  return usersAPI.allUsers()
+}

@@ -14,6 +14,7 @@ module.exports = {
   create,
   login,
   checkToken,
+  allUsers,
   getAll,
 };
 
@@ -63,6 +64,16 @@ async function getAll(req, res) {
     console.log(allCaregivers);
   } catch {
     res.status(400).json("Caregivers not found");
+  }
+}
+
+async function allUsers(req,res) {
+  try {
+    const allUsers = await User.find({});
+    console.log(allUsers)
+    res.json(allUsers)
+  } catch(e) {
+    res.status(400).json(e)
   }
 }
 
