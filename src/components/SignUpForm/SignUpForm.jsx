@@ -19,7 +19,6 @@ export default class SignUpForm extends Component {
     instagram: '',
     about: '',
     profile_image: '',
-
     error: ''
   };
 
@@ -33,7 +32,24 @@ export default class SignUpForm extends Component {
   handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      const formData = {...this.state};
+      const formData = new FormData();
+      const fileField = document.querySelector('input[type="file"]');
+      fileField.files.length && formData.append('profile_image', fileField.files[0]);
+      formData.append('fname', this.state.fname);
+      formData.append('lname', this.state.lname);
+      formData.append('email', this.state.email);
+      formData.append('password', this.state.password);
+      formData.append('confirm', this.state.confirm);
+      formData.append('age', this.state.age);
+      formData.append('phone_number', this.state.phone_number);
+      formData.append('best_time', this.state.best_time);
+      formData.append('location', this.state.location);
+      formData.append('rate', this.state.rate);
+      formData.append('credentials', this.state.credentials);
+      formData.append('linkedin', this.state.linkedin);
+      formData.append('facebook', this.state.facebook);
+      formData.append('instagram', this.state.instagram);
+      formData.append('about', this.state.about);
       delete formData.error;
       delete formData.confirm;
       // The promise returned by the signUp service method
@@ -53,11 +69,9 @@ export default class SignUpForm extends Component {
     return (
       <div>
         <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-          {/* <label>Profile Picture</label>
-            <input type="file" name="profile_image" value={this.state.profile_image} onChange={this.handleChange} required /> */}
-            <label>Profile Picture</label>
-            <input type="text" name="profile_image" value={this.state.profile_image} onChange={this.handleChange} required />
+          <form autoComplete="off" onSubmit={this.handleSubmit} encType="multipart/form-data">
+          <label>Profile Picture</label>
+            <input type="file" name="profile_image" value={this.state.profile_image} onChange={this.handleChange} required />
             <label>First Name</label>
             <input type="text" name="fname" value={this.state.fname} onChange={this.handleChange} required />
             <label>Last Name</label>
