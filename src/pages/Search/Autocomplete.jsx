@@ -59,7 +59,7 @@ export class Autocomplete extends Component {
             const { activeSuggestion, filteredSuggestions } = this.state;
 
             if(e.keyCode === 13) {
-                this.setState({
+                this.setState({ ...this.state, 
                     activeSuggestion: 0,
                     showSuggestions: false,
                     userInput: filteredSuggestions[activeSuggestion]
@@ -68,12 +68,12 @@ export class Autocomplete extends Component {
                 if(activeSuggestion === 0){
                     return;
                 }
-                this.setState({ activeSuggestion: activeSuggestion - 1});
+                this.setState({ ...this.state, activeSuggestion: activeSuggestion - 1});
             } else if (e.keyCode === 40) {
                 if (activeSuggestion - 1 === filteredSuggestions.length) {
                     return;
                 }
-                this.setState({ activeSuggestion: activeSuggestion + 1});
+                this.setState({ ...this.state, activeSuggestion: activeSuggestion + 1});
             }
         };
 
@@ -101,14 +101,14 @@ export class Autocomplete extends Component {
             }
 
         return ( 
-        <React.Fragment>
+        <>
             <input type="text" onChange={onChange} onKeyDown={onKeyDown} value={userInput} />
             {suggestionsListComponent}
 
             {/* store each userInput into an object of "selections" once a matching autocomplete item has been made */}
             {/* pass this state variable to GET route */}
             {/* on backend, parse GET route object to a mongoose database query User.find({ 'pet':true, 'drive': true, etc etc }) */}
-        </React.Fragment>
+        </>
         );
     }
 }
