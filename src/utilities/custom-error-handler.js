@@ -11,7 +11,7 @@ const handleInvalid = (err, res) => {
     let code = 400;
 
     if(errors.length > 1){
-        const formattedErrors = errors.join('');
+        const formattedErrors = errors.join(''); //not getting back an array?
         res.status(code).send({messages: formattedErrors, fields: fields});
     } else {
         res.status(code).send({messages: errors, fields: fields});
@@ -24,6 +24,6 @@ module.exports = (err, req, res, next) => {
         if(err.name === 'ValidationError') return err = handleInvalid(err,res);
         if(err.code && err.code == 11000) return err = handleDuplicates(err, res);
     } catch(err) {
-        res.status(500).send('An uknown error has occurred :/');
+        res.status(500).send('An unknown error has occurred :/');
     }
 }
