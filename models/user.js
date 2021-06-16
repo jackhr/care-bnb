@@ -17,8 +17,14 @@ const experienceSchema = new Schema(
 
 const userSchema = new Schema(
   {
-    fname: { type: String, required: true },
-    lname: { type: String, required: true }, //steve changed to enhance search options
+    fname: {
+      type: String,
+      required: true
+    },
+    lname: {
+      type: String,
+      required: true
+    }, //steve changed to enhance search options
     email: {
       type: String,
       unique: true,
@@ -36,25 +42,21 @@ const userSchema = new Schema(
       type: Number,
       trim: true,
       min: 18, //possibly update this based on casualness of platform
-      required: true,
     },
     phone_number: {
       type: String,
       trim: true,
       minlength: 10,
-      required: true,
     },
     profile_image: String,
     AWS_KEY: String,
     best_time: {
       type: String,
       trim: true,
-      required: true,
     },
     location: {
       //can change this to an array of objects to accept full addresss form data
       type: String,
-      required: true,
     },
     rate: Number,
     credentials: String,

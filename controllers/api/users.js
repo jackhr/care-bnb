@@ -25,14 +25,7 @@ function checkToken(req, res) {
 
 async function create(req, res) {
   try {
-    console.log(req.file);
-    const AWSData = await getNewImageUrl(req.file);
-    console.log("here 0", AWSData.url);
-    const user = await User.create({
-      ...req.body,
-      AWS_KEY: AWSData.key,
-      profile_image: AWSData.url,
-    });
+    const user = await User.create(req.body);
     const token = createJWT(user);
     // Yes, we can send back a simple string
     res.json(token);
