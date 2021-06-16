@@ -11,9 +11,12 @@ router.post("/login", usersCtrl.login);
 // GET /api/users/check-token
 router.get("/check-token", ensureLoggedIn, usersCtrl.checkToken);
 // GET /api/users/all
+router.post("/new-caregiver", ensureLoggedIn, usersCtrl.newCaregiver);
+
 router.get("/all", usersCtrl.allUsers);
+
 router.get("/current", usersCtrl.currentUser);
 
-router.get("/", usersCtrl.getAll);
+router.get("/caregivers", usersCtrl.getAllCaregivers);
 
 module.exports = router;
