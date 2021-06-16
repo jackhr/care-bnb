@@ -50,8 +50,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   background-color: #E5E5E5;
   height: 97vh;
+
 }
 
 code {
@@ -182,9 +184,9 @@ button[type="submit"] {
   margin: 1vmin 0 0;
 }
 
-img {
+/* img {
   width: 300px;
 }
 .profile-container {
   border: thin solid black;
-}
+} */

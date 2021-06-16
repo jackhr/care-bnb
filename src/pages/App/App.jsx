@@ -17,6 +17,7 @@ export default function App() {
   
   return (
     <main className="App">
+
       { user ? 
         <>
           <Switch>
@@ -41,6 +42,7 @@ export default function App() {
             <Redirect to="/orders" />
             {/* here let's redirect to profile page */}
           </Switch>
+
           <NavBar user={user} setUser={setUser} />
         </>
         :

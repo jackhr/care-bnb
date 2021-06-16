@@ -28,7 +28,7 @@ async function create(req, res) {
   try {
     const user = await User.create({
       ...req.body,
-      isCaregiver: false
+      isCaregiver: false,
     });
     const token = createJWT(user);
     // Yes, we can send back a simple string

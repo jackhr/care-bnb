@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import HomeIcon from '@material-ui/icons/Home';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import './NavBar.css'
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -9,6 +13,7 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
+
       { user && (
         <>
           <Link to="/profile"><img className="nav-icons" src="media/profile-page.svg" alt="icon of person to profile page." /></Link>
@@ -18,6 +23,7 @@ export default function NavBar({ user, setUser }) {
           {/* <Link to="" onClick={handleLogOut}>Log Out</Link> */}
         </>
       )}
+
     </nav>
   );
 }

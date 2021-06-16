@@ -4,8 +4,9 @@ const favicon = require("serve-favicon");
 const cors = require("cors");
 const logger = require("morgan");
 const upload = require("multer")();
+const User = require("./models/user");
 const errorController = require("./src/utilities/custom-error-handler");
-// const User = require("./models/user");
+
 
 require("dotenv").config();
 require("./config/database");
@@ -65,19 +66,19 @@ app.use(
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-// app.get("/profile/:id", function (req, res) {
-//   User.findById(req.params.id, function (err, foundUser) {
-//     if (foundUser) {
-//       res.send(foundUser);
-//     } else {
-//       res.send("That caregiver was not found");
-//     }
-//   });
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
+
+app.get("/profile/:id", function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (foundUser) {
+      res.send(foundUser);
+    } else {
+      res.send("That caregiver was not found");
+    }
+  });
+});
 
 // app.post("/profile", function (req, res) {
 //   const newUser = new User({
@@ -106,24 +107,24 @@ app.get("/*", function (req, res) {
 //   });
 // });
 
-// app.patch("/profile/:id", function (req, res) {
-//   User.updateOne({ _id: req.params.id }, { $set: req.body }, function (err) {
-//     if (!err) {
-//       res.send("Successfully updated user");
-//     } else {
-//       res.send(err);
-//     }
-//   });
-// });
-// app.delete("/profile/:id", function (req, res) {
-//   User.deleteOne({ _id: req.params.id }, function (err) {
-//     if (!err) {
-//       res.send("Successfully deleted");
-//     } else {
-//       res.send(err);
-//     }
-//   });
-// });
+app.patch("/profile/:id", function (req, res) {
+  User.updateOne({ _id: req.params.id }, { $set: req.body }, function (err) {
+    if (!err) {
+      res.send("Successfully updated user");
+    } else {
+      res.send(err);
+    }
+  });
+});
+app.delete("/profile/:id", function (req, res) {
+  User.deleteOne({ _id: req.params.id }, function (err) {
+    if (!err) {
+      res.send("Successfully deleted");
+    } else {
+      res.send(err);
+    }
+  });
+});
 
 app.use(errorController);
 
