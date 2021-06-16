@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
 import * as usersAPI from "../../utilities/users-api";
-import * as usersServices from "../../utilities/users-service";
+import * as userService from "../../utilities/users-service";
 
 export default function CaregiverPage({ caregivers, setCaregivers }) {
   const [data, setData] = useState([]);
@@ -17,12 +17,17 @@ export default function CaregiverPage({ caregivers, setCaregivers }) {
 
   useEffect(() => {
     async function getThisUser() {
-      let thisUser = await usersServices.getUser();
+      let thisUser = await userService.getUser();
       setUser(thisUser);
     }
     getThisUser();
     // console.log(user);
   }, []);
+
+  function handleLogOut() {
+    userService.logOut();
+    setUser(null);
+  }
 
   return (
     <div className="caregiver">
@@ -41,7 +46,7 @@ export default function CaregiverPage({ caregivers, setCaregivers }) {
       <h2>{user.linkedin}</h2>
       <h2>{user.facebook}</h2>
       <h2>{user.instagram}</h2>
-
+      <button onClick={handleLogOut}>LOG OUT</button>
       {data.map((x) => (
         <CaregiverProfile
           key={x._id}
