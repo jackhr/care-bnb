@@ -9,19 +9,16 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      { user ? (
+      { user && (
         <>
-          <Link to="/profile">Profile Page</Link>&nbsp; | &nbsp;
-          <Link to="/orders">Order History</Link>
+          <Link to="/profile">Profile Page</Link>
           &nbsp; | &nbsp;
           <Link to="/orders/new">New Order</Link>
           &nbsp; | &nbsp;
-          <span>Welcome{user ? `, ${user.fname}` : ""}</span>
-          &nbsp; | &nbsp;
           <Link to="" onClick={handleLogOut}>Log Out</Link>
+          {/* ^^^^^^^^^^^^ This will be the link to the chat feature */}
+          {/* <Link to="" onClick={handleLogOut}>Log Out</Link> */}
         </>
-      ) : (
-        <span>Welcome</span>
       )}
     </nav>
   );

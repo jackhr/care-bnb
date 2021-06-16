@@ -1,0 +1,98 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-message {
+  margin: 0;
+}
+
+input {
+  border-radius: 20px;
+  width: 75%;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.change-form-btn {
+  color: #588B8B;
+}
+
+.login-btn {
+  background: #584B53;
+  border-radius: 15px;
+  width: 35vw;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.login-inputs {
+  margin: 0;
+  height: 40px;
+}
+
+.sign-up-inputs {
+  margin: 5px;
+  height: 35px;
+}
+
+.login {
+  margin-top: 20px;
+}
+
+#login-main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#login-div {
+  background-color: var(--tan-1);
+  border-radius: 3vmin 3vmin 0 0;
+  padding: 5vw 10vw;
+  height: 40vh;
+}
+
+:placeholder-shown {
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+#login-main > div:first-child {
+  padding: 5vw 5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+#login-main > div:first-child > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#login-main > div:first-child > div > img {
+  max-width: 40vw;
+}
+
+#title {
+  color: #584B53;
+  font-weight: 600;
+  font-size: 7vmin;
+}
+
+#title > span {
+  font-weight: 300;
+}
+
+#blurb {
+  text-align: right;
+  color: #584B53;
+  font-weight: 500;
+}
+
+#login-div {
+  display: flex;
+  flex-direction: column;
+}

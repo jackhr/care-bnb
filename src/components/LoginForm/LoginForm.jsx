@@ -24,17 +24,18 @@ export default function LogIn({ setUser }) {
   }
 
   return (
-    <div>
-      <div className="form-container" onSubmit={handleSubmit}>
+    <>
+      <div className="login-form" onSubmit={handleSubmit}>
         <form autoComplete="off" >
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
+          <input className="login-inputs" placeholder="Email" type="text" name="email" value={credentials.email} onChange={handleChange} required />
+          <br />
+          <input className="login-inputs" placeholder="Password" type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          <div className="login">
+            <button className="login-btn" type="submit">Login</button>
+          </div>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>
-    </div>
+    </>
   );
 }

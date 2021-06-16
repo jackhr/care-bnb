@@ -87,9 +87,8 @@ async function login(req, res) {
 
 async function getAllCaregivers(req, res) {
   try {
-    const allCaregivers = await User.find({});
+    const allCaregivers = await User.find({ isCaregiver: true });
     res.send(allCaregivers);
-    console.log(allCaregivers);
   } catch {
     res.status(400).json("Caregivers not found");
   }
@@ -97,7 +96,7 @@ async function getAllCaregivers(req, res) {
 
 async function allUsers(req, res) {
   try {
-    const allUsers = await User.find({ isCaregiver: true });
+    const allUsers = await User.find({});
     console.log(allUsers);
     res.json(allUsers);
   } catch (e) {
