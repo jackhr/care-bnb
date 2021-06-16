@@ -7,6 +7,7 @@ import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import CaregiverPage from '../CaregiverPage/CaregiverPage';
 import NavBar from '../../components/NavBar/NavBar';
 import Chat from '../../components/Chat/Chat'
+import SearchResults from '../Search/SearchResults';
 import './App.css';
 import BecomeCaregiverPage from '../BecomeCaregiverPage/BecomeCaregiverPage';
 
@@ -32,7 +33,10 @@ export default function App() {
               <OrderHistoryPage />
             </Route>
             <Route path="/chat">
-            <Chat />
+              <Chat />
+            </Route>
+            <Route path="/search">
+              <SearchResults />
             </Route>
             <Redirect to="/orders" />
             {/* here let's redirect to profile page */}
