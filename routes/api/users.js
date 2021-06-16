@@ -9,10 +9,14 @@ router.post("/", usersCtrl.create);
 // POST /api/users/login
 router.post("/login", usersCtrl.login);
 // GET /api/users/check-token
-router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
+router.get("/check-token", ensureLoggedIn, usersCtrl.checkToken);
 // GET /api/users/all
-router.get('/all', usersCtrl.allUsers);
+router.post("/new-caregiver", ensureLoggedIn, usersCtrl.newCaregiver);
 
-router.get("/", usersCtrl.getAll);
+router.get("/all", usersCtrl.allUsers);
+
+router.get("/current", usersCtrl.currentUser);
+
+router.get("/caregivers", usersCtrl.getAllCaregivers);
 
 module.exports = router;

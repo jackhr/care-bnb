@@ -8,18 +8,22 @@ import CaregiverPage from '../CaregiverPage/CaregiverPage';
 import NavBar from '../../components/NavBar/NavBar';
 import SearchResults from '../Search/SearchResults';
 import './App.css';
+import BecomeCaregiverPage from '../BecomeCaregiverPage/BecomeCaregiverPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [caregivers, setCaregivers] = useState([]);
   
   return (
     <main className="App">
       { user ? 
         <>
-          <NavBar user={user} setUser={setUser} />
           <Switch>
-          <Route path="/profile">
-              <CaregiverPage />
+            <Route path="/update-profile">
+              <BecomeCaregiverPage />
+            </Route>
+            <Route path="/profile">
+              <CaregiverPage caregivers={caregivers} setCaregivers={setCaregivers} />
             </Route>
             <Route path="/orders/new">
               <NewOrderPage />
@@ -31,8 +35,9 @@ export default function App() {
               <SearchResults />
             </Route>
             <Redirect to="/orders" />
-            {/* here lets redirect to profile page */}
+            {/* here let's redirect to profile page */}
           </Switch>
+          <NavBar user={user} setUser={setUser} />
         </>
         :
         <AuthPage setUser={setUser} />

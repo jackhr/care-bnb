@@ -1,26 +1,52 @@
 import { useEffect, useState } from "react";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
 import * as usersAPI from "../../utilities/users-api";
+import * as userService from "../../utilities/users-service";
 
-export default function CaregiverPage() {
+export default function CaregiverPage({ caregivers, setCaregivers }) {
   const [data, setData] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     async function getAllCaregivers() {
       const caregivers = await usersAPI.getAllCaregivers();
-      setData(caregivers);
+      setCaregivers(caregivers);
     }
     getAllCaregivers();
   }, []);
 
-  // if (loading) return "Loading...";
-  // if (error) return "Error!";
+  useEffect(() => {
+    async function getThisUser() {
+      let thisUser = await userService.getUser();
+      setUser(thisUser);
+    }
+    getThisUser();
+    // console.log(user);
+  }, []);
+
+  function handleLogOut() {
+    userService.logOut();
+    setUser(null);
+  }
 
   return (
     <div className="caregiver">
-      <h1>{console.log(data)}</h1>
+      <img src={user.profile_image} alt="" />
+      <h1>
+        {user.fname} {user.lname}
+      </h1>
+      <h2>{user.email}</h2>
+      <h2>{user.location}</h2>
+      <h2>{user.phone_number}</h2>
+      <h2>{user.age}</h2>
+      <h2>{user.best_time}</h2>
+      <h2>{user.rate}</h2>
+      <h2>{user.credentials}</h2>
+      <h2>{user.about}</h2>
+      <h2>{user.linkedin}</h2>
+      <h2>{user.facebook}</h2>
+      <h2>{user.instagram}</h2>
+      <button onClick={handleLogOut}>LOG OUT</button>
       {data.map((x) => (
         <CaregiverProfile
           key={x._id}
