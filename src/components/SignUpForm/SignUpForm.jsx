@@ -39,22 +39,15 @@ export default class SignUpForm extends Component {
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
-      <div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit} encType="multipart/form-data">
-            <label>First Name</label>
-            <input type="text" name="fname" value={this.state.fname} onChange={this.handleChange} required />
-            <label>Last Name</label>
-            <input type="text" name="lname" value={this.state.lname} onChange={this.handleChange} required />
-            <label>Email</label>
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-            <label>Password</label>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
-            <label>Confirm</label>
-            <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
-            <button type="submit" disabled={disable}>SIGN UP</button>
-          </form>
-        </div>
+      <div className="login-form">
+        <form autoComplete="off" onSubmit={this.handleSubmit} encType="multipart/form-data">
+          <input className="sign-up-inputs" placeholder="First Name" type="text" name="fname" value={this.state.fname} onChange={this.handleChange} required />
+          <input className="sign-up-inputs" placeholder="Last Name" type="text" name="lname" value={this.state.lname} onChange={this.handleChange} required />
+          <input className="sign-up-inputs" placeholder="Email" type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
+          <input className="sign-up-inputs" placeholder="Password" type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
+          <input className="sign-up-inputs" placeholder="Confirm Password" type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
+          <button className="login-btn" type="submit" disabled={disable}>Sign Up</button>
+        </form>
         <p className="error-message">&nbsp;{this.state.error}</p>
       </div>
     );
