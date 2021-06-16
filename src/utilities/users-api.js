@@ -33,3 +33,8 @@ export function getAllCaregivers() {
 export function getOneCaregiver() {
   return sendRequest(`${BASE_URL}/caregivers/:id`)
 }
+
+export function filterCaregivers() {
+  return sendRequest(`${BASE_URL}/caregivers/search`)
+  //will need to pass the formData in as an additional parameter here for sendRequest method
+}
