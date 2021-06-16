@@ -15,6 +15,7 @@ module.exports = {
   allUsers,
   getAllCaregivers,
   getOneCaregiver,
+  filterCaregivers,
   currentUser,
 };
 
@@ -100,6 +101,18 @@ async function getOneCaregiver(req, res) {
     const id = req.params.id
     const thisCaregiver = await User.findById(id);
     res.send(thisCaregiver);
+  } catch (e) {
+    res.status(400).json(e)
+  }
+}
+
+async function filterCaregivers(req, res) {
+  try {
+    const filters = req.body.filters
+    console.log(filters);
+    //need to expand this to plug into the find method called on database
+    const caregivers = await User.find({});
+    res.send(caregivers)
   } catch (e) {
     res.status(400).json(e)
   }
