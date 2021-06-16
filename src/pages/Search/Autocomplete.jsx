@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 export class Autocomplete extends Component {
     static propTypes = {};
@@ -19,7 +19,7 @@ export class Autocomplete extends Component {
 
     render() {
 
-        const {
+        let {
             onChange,
             onClick,
             onKeyDown,
