@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
 import * as usersAPI from "../../utilities/users-api";
 import * as usersServices from "../../utilities/users-service";
+import "./CaregiverPage.css";
+import StarIcon from "@material-ui/icons/Star";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 export default function CaregiverPage({ caregivers, setCaregivers }) {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -26,23 +30,39 @@ export default function CaregiverPage({ caregivers, setCaregivers }) {
 
   return (
     <div className="caregiver">
-      <img src={user.profile_image} alt="" />
-      <h1>
-        {user.fname} {user.lname}
-      </h1>
-      <h2>{user.email}</h2>
-      <h2>{user.location}</h2>
-      <h2>{user.phone_number}</h2>
-      <h2>{user.age}</h2>
-      <h2>{user.best_time}</h2>
-      <h2>{user.rate}</h2>
-      <h2>{user.credentials}</h2>
-      <h2>{user.about}</h2>
-      <h2>{user.linkedin}</h2>
-      <h2>{user.facebook}</h2>
-      <h2>{user.instagram}</h2>
+      <div className="image-container">
+        <img src={user.profile_image} alt="" />
+      </div>
+      <div className="info-container">
+        <div className="heading">
+          <div className="heading-info">
+            <div>
+              <h1>
+                {user.fname} {user.lname},
+              </h1>
+              <CheckCircleIcon style={{ color: "#588B8B" }} fontSize="large" />
+            </div>
+            <h1>{user.age}</h1>
+          </div>
+          <div></div>
+          <div className="location">
+            <FavoriteBorderIcon style={{ fontSize: 50 }} />
+            <h3>{user.location}</h3>
+          </div>
+        </div>
+        <StarIcon style={{ fontSize: 50 }} />
+        <h2>{user.credentials}</h2>
+        <div className="horizontal-line"></div>
+        <hr />
+        <h2>{user.phone_number}</h2>
+        <h2>About</h2>
+        <p>{user.about}</p>
+        <h2>Availability</h2>
+        <p>{user.best_time}</p>
+        <button>Meet</button>
+      </div>
 
-      {data.map((x) => (
+      {/* {caregivers.map((x) => (
         <CaregiverProfile
           key={x._id}
           fname={x.fname}
@@ -61,7 +81,7 @@ export default function CaregiverPage({ caregivers, setCaregivers }) {
           about={x.about}
           profile_image={x.profile_image}
         />
-      ))}
+      ))} */}
     </div>
   );
 }

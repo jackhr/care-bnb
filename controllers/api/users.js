@@ -28,7 +28,7 @@ async function create(req, res) {
   try {
     const user = await User.create({
       ...req.body,
-      isCaregiver: false
+      isCaregiver: false,
     });
     const token = createJWT(user);
     // Yes, we can send back a simple string
@@ -87,7 +87,7 @@ async function login(req, res) {
 
 async function getAllCaregivers(req, res) {
   try {
-    const allCaregivers = await User.find({});
+    const allCaregivers = await User.find({ isCaregiver: true });
     res.send(allCaregivers);
     console.log(allCaregivers);
   } catch {
@@ -97,7 +97,7 @@ async function getAllCaregivers(req, res) {
 
 async function allUsers(req, res) {
   try {
-    const allUsers = await User.find({ isCaregiver: true });
+    const allUsers = await User.find({});
     console.log(allUsers);
     res.json(allUsers);
   } catch (e) {
