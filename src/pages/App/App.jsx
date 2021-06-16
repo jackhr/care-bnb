@@ -6,6 +6,7 @@ import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import CaregiverPage from '../CaregiverPage/CaregiverPage';
 import NavBar from '../../components/NavBar/NavBar';
+import SearchResults from '../Search/SearchResults';
 import './App.css';
 
 export default function App() {
@@ -25,6 +26,9 @@ export default function App() {
             </Route>
             <Route path="/orders">
               <OrderHistoryPage />
+            </Route>
+            <Route path="/search">
+              <SearchResults />
             </Route>
             <Redirect to="/orders" />
             {/* here lets redirect to profile page */}
