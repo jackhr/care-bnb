@@ -89,7 +89,6 @@ async function getAllCaregivers(req, res) {
   try {
     const allCaregivers = await User.find({ isCaregiver: true });
     res.send(allCaregivers);
-    console.log(allCaregivers);
   } catch {
     res.status(400).json("Caregivers not found");
   }

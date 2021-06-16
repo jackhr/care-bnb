@@ -6,6 +6,8 @@ import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import CaregiverPage from '../CaregiverPage/CaregiverPage';
 import NavBar from '../../components/NavBar/NavBar';
+import Chat from '../../components/Chat/Chat'
+import SearchResults from '../Search/SearchResults';
 import './App.css';
 import BecomeCaregiverPage from '../BecomeCaregiverPage/BecomeCaregiverPage';
 
@@ -15,7 +17,7 @@ export default function App() {
   
   return (
     <main className="App">
-     
+
       { user ? 
         <>
           <Switch>
@@ -31,10 +33,17 @@ export default function App() {
             <Route path="/orders">
               <OrderHistoryPage />
             </Route>
+            <Route path="/chat">
+              <Chat />
+            </Route>
+            <Route path="/search">
+              <SearchResults />
+            </Route>
             <Redirect to="/orders" />
             {/* here let's redirect to profile page */}
           </Switch>
-          {/* <NavBar user={user} setUser={setUser} /> */}
+
+          <NavBar user={user} setUser={setUser} />
         </>
         :
         <AuthPage setUser={setUser} />

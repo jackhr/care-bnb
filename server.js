@@ -5,11 +5,46 @@ const cors = require("cors");
 const logger = require("morgan");
 const upload = require("multer")();
 const User = require("./models/user");
+const errorController = require("./src/utilities/custom-error-handler");
+
 
 require("dotenv").config();
 require("./config/database");
 
 const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
+let users = {}
+io.on('connection', socket => {
+  console.log("Hello from the Server! Socket ID: "+socket.id)
+
+  socket.on("userJoin", username => {
+    users[socket.id] = username
+    socket.join(username)
+    socket.join("General Chat")
+    console.log("User Object after connection: ", users)
+    io.emit("userList", [...new Set(Object.values(users))])
+  })
+
+  socket.on("newMessage", newMessage => {
+    io.to(newMessage.room).emit("newMessage", { name: newMessage.name, msg: newMessage.msg, isPrivate: newMessage.isPrivate})
+  })
+
+  socket.on("roomEntered", ({oldRoom, newRoom}) => {
+    socket.leave(oldRoom)
+    io.to(oldRoom).emit("newMessage", {name: "NEWS", msg: `${users[socket.id]} just left "${oldRoom}"`})
+    io.to(newRoom).emit("newMessage", {name: "NEWS", msg: `${users[socket.id]} just joined "${newRoom}"`})
+    socket.join(newRoom)
+  })
+
+  socket.on("disconnect", () => {
+    io.emit("newMessage", {name: "NEWS", msg: `${users[socket.id]} totally left the chat`})
+    delete users[socket.id]
+    io.emit("userList", [...new Set(Object.values(users))])
+    console.log("Users after disconnection: ", users)
+  })
+})
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -91,8 +126,10 @@ app.delete("/profile/:id", function (req, res) {
   });
 });
 
+app.use(errorController);
+
 const port = process.env.PORT || 3001;
 
-app.listen(port, function () {
+server.listen(port, function () {
   console.log(`Express app running on port ${port}`);
 });

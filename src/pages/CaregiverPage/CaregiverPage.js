@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
 import * as usersAPI from "../../utilities/users-api";
+
 import * as usersServices from "../../utilities/users-service";
 import "./CaregiverPage.css";
 import StarIcon from "@material-ui/icons/Star";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+
 
 export default function CaregiverPage({ caregivers, setCaregivers }) {
   // const [data, setData] = useState([]);
@@ -21,15 +23,21 @@ export default function CaregiverPage({ caregivers, setCaregivers }) {
 
   useEffect(() => {
     async function getThisUser() {
-      let thisUser = await usersServices.getUser();
+      let thisUser = await userService.getUser();
       setUser(thisUser);
     }
     getThisUser();
     // console.log(user);
   }, []);
 
+  function handleLogOut() {
+    userService.logOut();
+    setUser(null);
+  }
+
   return (
     <div className="caregiver">
+
       <div className="image-container">
         <img src={user.profile_image} alt="" />
       </div>
@@ -63,6 +71,7 @@ export default function CaregiverPage({ caregivers, setCaregivers }) {
       </div>
 
       {/* {caregivers.map((x) => (
+
         <CaregiverProfile
           key={x._id}
           fname={x.fname}
