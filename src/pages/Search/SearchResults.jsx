@@ -1,7 +1,7 @@
 import * as userService from '../../utilities/users-service';
 import Autocomplete from './Autocomplete';
 
-export default function OrderHistoryPage() {
+export default function SearchResults() {
 
     //we'll need to put our routes in here
 
