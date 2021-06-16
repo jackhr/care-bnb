@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import * as usersAPI from "../../utilities/users-api";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
+import Autocomplete from "../Search/Autocomplete";
 
 export default function AllCaregivers() {
 
@@ -9,13 +11,30 @@ export default function AllCaregivers() {
     useEffect(() => {
         async function getAllCaregivers() {
           const caregivers = await usersAPI.getAllCaregivers();
-          console.log(caregivers)
           setCaregivers(caregivers);
         }
         getAllCaregivers();
       }, []);
 
       return (
+        <>
+          <h1> Select your filters </h1>
+          <div className="needFilterContainer">
+              <Autocomplete
+                  suggestions={
+                      ['CPR Certified', 'Pet Friendly', 'Can Drive', 'Fluent in English', 'Fluent in Spanish', 'Arts & Crafts', 'First Aid Certified', 'Tutoring Assistance', 'Open Communication']
+                  }
+              />
+          </div>
+
+          <div className="wantFilterContainer">
+              <Autocomplete 
+              suggestions={
+                  ['Age 18-30', 'Age 31-45', 'Age 46-64', 'Age 65+', 'Able to Drive']
+              }
+              />
+          </div>
+
           <div className="allCaregivers">
                 {caregivers.map((x) => (
                     <>
@@ -37,8 +56,13 @@ export default function AllCaregivers() {
                     about={x.about}
                     profile_image={x.profile_image}
                     />
+                    {/* <Link to={`/caregivers/${index}`} >
+                      <button> hehe click me </button>
+                    </Link> */}
                     </>
-                ))} 
-            </div>
+                  ))
+                } 
+          </div>
+        </>
       )
 }

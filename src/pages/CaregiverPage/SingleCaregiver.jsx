@@ -7,66 +7,54 @@ import "./CaregiverPage.css";
 import StarIcon from "@material-ui/icons/Star";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import { useParams } from 'react-router';
 
 
 export default function CaregiverPage({ caregivers, setCaregivers }) {
   // const [data, setData] = useState([]);
-  const [user, setUser] = useState({});
+  const [caregiver, setCaregiver] = useState({});
+  const { id } = useParams();
 
   useEffect(() => {
-    async function getAllCaregivers() {
-      const caregivers = await usersAPI.getAllCaregivers();
-      setCaregivers(caregivers);
+    async function getCaregiver() {
+      let thisCaregiver = await userService.getOneCaregiver();
+      setCaregiver(caregiver);
     }
-    getAllCaregivers();
+    getCaregiver();
   }, []);
-
-  useEffect(() => {
-    async function getThisUser() {
-      let thisUser = await userService.getUser();
-      setUser(thisUser);
-    }
-    getThisUser();
-    // console.log(user);
-  }, []);
-
-  function handleLogOut() {
-    userService.logOut();
-    setUser(null);
-  }
 
   return (
     <div className="caregiver">
 
       <div className="image-container">
-        <img src={user.profile_image} alt="" />
+        <img src={caregiver.profile_image} alt="" />
       </div>
       <div className="info-container">
         <div className="heading">
           <div className="heading-info">
             <div>
               <h1>
-                {user.fname} {user.lname},
+                {caregiver.fname} {caregiver.lname},
               </h1>
               <CheckCircleIcon style={{ color: "#588B8B" }} fontSize="large" />
             </div>
-            <h1>{user.age}</h1>
+            <h1>{caregiver.age}</h1>
           </div>
           <div></div>
           <div className="location">
             <FavoriteBorderIcon style={{ fontSize: 50 }} />
-            <h3>{user.location}</h3>
+            <h3>{caregiver.location}</h3>
           </div>
         </div>
         <StarIcon style={{ fontSize: 50 }} />
-        <h2>{user.credentials}</h2>
+        <h2>{caregiver.credentials}</h2>
         <div className="horizontal-line"></div>
         <hr />
-        <h2>{user.phone_number}</h2>
+        <h2>{caregiver.phone_number}</h2>
         <h2>About</h2>
-        <p>{user.about}</p>
+        <p>{caregiver.about}</p>
         <h2>Availability</h2>
-        <p>{user.best_time}</p>
+        <p>{caregiver.best_time}</p>
         <button>Meet</button>
       </div>
 
