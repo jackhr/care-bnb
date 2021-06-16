@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import * as usersAPI from "../../utilities/users-api";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
 
@@ -37,6 +38,9 @@ export default function AllCaregivers() {
                     about={x.about}
                     profile_image={x.profile_image}
                     />
+                    {/* <Link to={`/caregivers/${index}`} >
+                      <button> hehe click me </button>
+                    </Link> */}
                     </>
                 ))} 
             </div>
