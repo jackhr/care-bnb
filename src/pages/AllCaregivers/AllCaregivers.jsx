@@ -10,7 +10,6 @@ export default function AllCaregivers() {
     useEffect(() => {
         async function getAllCaregivers() {
           const caregivers = await usersAPI.getAllCaregivers();
-          console.log(caregivers)
           setCaregivers(caregivers);
         }
         getAllCaregivers();
