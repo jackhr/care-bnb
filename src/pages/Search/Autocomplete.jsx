@@ -31,7 +31,7 @@ export class Autocomplete extends Component {
             }
         } = this;
 
-        handleSubmit = (e) => {
+        this.handleSubmit = (e) => {
             const filters = this.state.userInput;
             //will need to finish building this handleSubmit function to pass filters as form data to backend route
         };
@@ -108,9 +108,9 @@ export class Autocomplete extends Component {
         return ( 
         <>
             <form>
-                <input type="text" onChange={onChange} onKeyDown={onKeyDown} value={userInput} />
+                <input placeholder={this.props.placeholder} type="text" onChange={onChange} onKeyDown={onKeyDown} value={userInput} />
                 {suggestionsListComponent}
-                <input type="button" onClick={handleSubmit} />
+                <input value="search" type="button" onClick={this.handleSubmit} />
 
                 {/* store each userInput into an object of "selections" once a matching autocomplete item has been made */}
                 {/* pass this state variable to GET route */}

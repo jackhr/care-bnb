@@ -24,6 +24,7 @@ export default function AllCaregivers() {
                   suggestions={
                       ['CPR Certified', 'Pet Friendly', 'Can Drive', 'Fluent in English', 'Fluent in Spanish', 'Arts & Crafts', 'First Aid Certified', 'Tutoring Assistance', 'Open Communication']
                   }
+                  placeholder={"Must Haves"}
               />
           </div>
 
@@ -32,10 +33,11 @@ export default function AllCaregivers() {
               suggestions={
                   ['Age 18-30', 'Age 31-45', 'Age 46-64', 'Age 65+', 'Able to Drive']
               }
+              placeholder={"Nice to Haves"}
               />
           </div>
 
-          <div className="allCaregivers">
+          <div id="all-caregivers">
                 {caregivers.map((x) => (
                     <>
                     <CaregiverProfile
