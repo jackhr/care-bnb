@@ -60,3 +60,11 @@ export function allUsers() {
 export function currentUser() {
   return usersAPI.currentUser();
 }
+
+export function getOneCaregiver() {
+  return usersAPI.getOneCaregiver();
+}
+
+export function filterCaregivers() {
+  return usersAPI.filterCaregivers();
+}

@@ -29,3 +29,12 @@ export function currentUser() {
 export function getAllCaregivers() {
   return sendRequest(`${BASE_URL}/caregivers`);
 }
+
+export function getOneCaregiver() {
+  return sendRequest(`${BASE_URL}/caregivers/:id`)
+}
+
+export function filterCaregivers() {
+  return sendRequest(`${BASE_URL}/caregivers/search`)
+  //will need to pass the formData in as an additional parameter here for sendRequest method
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile";
 import * as usersAPI from "../../utilities/users-api";
+
 import * as usersServices from "../../utilities/users-service";
 import * as userService from "../../utilities/users-service";
 import "./CaregiverPage.css";
