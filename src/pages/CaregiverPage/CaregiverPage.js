@@ -54,8 +54,8 @@ export default function CaregiverPage({ caregivers, setCaregivers }) {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "50%",
-      height: "45%",
+      width: "75%",
+      height: "70%",
       backgroundColor: "#EBD8CA",
     },
   };
