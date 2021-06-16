@@ -29,3 +29,7 @@ export function currentUser() {
 export function getAllCaregivers() {
   return sendRequest(`${BASE_URL}/caregivers`);
 }
+
+export function getOneCaregiver() {
+  return sendRequest(`${BASE_URL}/caregivers/:id`)
+}
