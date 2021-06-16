@@ -24,6 +24,19 @@ code {
   --text-dark: #615954;
 }
 
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  height: 20vmin;
+  background-color: #EBD8CA;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+
 *,
 *:before,
 *:after {
@@ -37,12 +50,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-4);
-  height: 100vh;
+  background-color: #E5E5E5;
+  height: 97vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.nav-icons {
+  max-width: 8vmin;
 }
 
 #root {
