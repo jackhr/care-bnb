@@ -2,7 +2,6 @@ import React,{ useState, useEffect }  from 'react';
 import { Container, Col, Row } from "react-bootstrap";
 import io from "socket.io-client";
 import * as userService from "../../utilities/users-service";
-import './Chat.css'
 
 const socket = io();
 
