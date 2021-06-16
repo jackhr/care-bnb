@@ -6,6 +6,7 @@ import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import CaregiverPage from '../CaregiverPage/CaregiverPage';
 import NavBar from '../../components/NavBar/NavBar';
+import Chat from '../../components/Chat/Chat'
 import SearchResults from '../Search/SearchResults';
 import './App.css';
 import BecomeCaregiverPage from '../BecomeCaregiverPage/BecomeCaregiverPage';
@@ -30,6 +31,9 @@ export default function App() {
             </Route>
             <Route path="/orders">
               <OrderHistoryPage />
+            </Route>
+            <Route path="/chat">
+              <Chat />
             </Route>
             <Route path="/search">
               <SearchResults />
