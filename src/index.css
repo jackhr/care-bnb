@@ -60,6 +60,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.checkbox-div {
+  display: flex;
+  align-items: center;
+  width: 73vw;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.checkbox-div > input {
+  width: 20vmin
+}
+
+.checkbox-div > label {
+  font-size: 5vmin;
+}
+
 .nav-icons {
   max-width: 8vmin;
 }
@@ -136,16 +152,25 @@ input:focus {
   border-color: var(--text-light);
 }
 textarea {
-  padding: 1vmin;
-  font-size: 2vmin;
+  padding: 2vmin;
+  font-size: 4vmin;
   border: 0.1vmin solid var(--tan-3);
-  border-radius: 0.5vmin;
+  border-radius: 2vmin;
   color: var(--text-dark);
   background-image: none !important; /* prevent lastpass */
   outline: none;
 }
 textarea:focus {
   border-color: var(--tan-4);
+}
+
+.cargiver-input {
+  margin: 0.6vmin;
+}
+
+#caregiver-btn {
+  font-size: 3vmin;
+  width: 30vw;
 }
 
 button,
