@@ -14,6 +14,7 @@ module.exports = {
   checkToken,
   allUsers,
   getAllCaregivers,
+  getOneCaregiver,
   currentUser,
 };
 
@@ -91,6 +92,16 @@ async function getAllCaregivers(req, res) {
     res.send(allCaregivers);
   } catch {
     res.status(400).json("Caregivers not found");
+  }
+}
+
+async function getOneCaregiver(req, res) {
+  try {
+    const id = req.params.id
+    const thisCaregiver = await User.findById(id);
+    res.send(thisCaregiver);
+  } catch (e) {
+    res.status(400).json(e)
   }
 }
 
