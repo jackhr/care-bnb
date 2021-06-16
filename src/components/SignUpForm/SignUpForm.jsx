@@ -43,7 +43,7 @@ export default class SignUpForm extends Component {
       <div className="login-form">
 
         <div className="error-notif">
-          {error && <Error error={error.messages}/>}
+          {this.state.error && <Error error={this.state.error.messages}/>}
         </div>
 
         <form autoComplete="off" onSubmit={this.handleSubmit} encType="multipart/form-data">
