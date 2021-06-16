@@ -20,7 +20,7 @@ export default function CaregiverForm({ setUsers }) {
     communication: false,
     facebook: "",
     instagram: "",
-    about: "",
+    about: "Let us know a little more bit about yourself",
   });
 
   async function handleSubmit(evt) {
@@ -57,47 +57,54 @@ export default function CaregiverForm({ setUsers }) {
   return (
     <div className="form-container">
       <form autoComplete="off" onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>Profile Image</label>
-        <input type="file" name="profile_image" required />
-        <label>Age</label>
-        <input type="number" name="age" value={cgData.age} onChange={handleChange} required />
-        <label>Phone Number</label>
-        <input type="number" name="phone_number" value={cgData.phone_number} onChange={handleChange} required />
-        <label>Best Time to Contact You</label>
-        <input type="text" name="best_time" value={cgData.best_time} onChange={handleChange} required />
-        <label>Location</label>
-        <input type="text" name="location" value={cgData.location} onChange={handleChange} required />
-        <label>Rate per Hour</label>
-        <input type="number" name="rate" value={cgData.rate} onChange={handleChange} required />
-        <div style={{height: "20px"}}></div>
-        <div style={{height: "20px"}}></div>
-        <label>Can You provide Any of These?</label>
+        <input className="cargiver-input" placeholder="Profile Image" type="file" name="profile_image" required />
+        <input className="cargiver-input" placeholder="Age" type="number" name="age" value={cgData.age} onChange={handleChange} required />
+        <input className="cargiver-input" placeholder="Phone #" type="number" name="phone_number" value={cgData.phone_number} onChange={handleChange} required />
+        <input className="cargiver-input" placeholder="Best Time to Contact You" type="text" name="best_time" value={cgData.best_time} onChange={handleChange} required />
+        <input className="cargiver-input" placeholder="Location" type="text" name="location" value={cgData.location} onChange={handleChange} required />
+        <input className="cargiver-input" placeholder="Rate/hr" type="number" name="rate" value={cgData.rate} onChange={handleChange} required />
+        <h3 style={{marginTop: "5vmin"}}>Can You provide Any of These?</h3>
         <br />
-        <label htmlFor="cpr">CPR Certified</label>
-        <input id="cpr" type="checkbox" name="cpr" checked={cgData.cpr} onChange={handleChange}/>
-        <label htmlFor="pet">Pet Friendly</label>
-        <input id="pet" type="checkbox" name="pet" checked={cgData.pet} onChange={handleChange} />
-        <label htmlFor="driver">Can Drive</label>
-        <input id="driver" type="checkbox" name="driver" checked={cgData.driver} onChange={handleChange} />
-        <label htmlFor="englishF">Fluent in English</label>
-        <input id="englishF" type="checkbox" name="englishF" checked={cgData.englishF} onChange={handleChange} />
-        <label htmlFor="spanishF">Fluent Spanish</label>
-        <input id="spanishF" type="checkbox" name="spanishF" checked={cgData.spanishF} onChange={handleChange} />
-        <label htmlFor="craft">Arts & Crafts</label>
-        <input id="craft" type="checkbox" name="craft" checked={cgData.craft} onChange={handleChange} />
-        <label htmlFor="first_aid">First Aid</label>
-        <input id="first_aid" type="checkbox" name="first_aid" checked={cgData.first_aid} onChange={handleChange} />
-        <label htmlFor="tutor">Homework Help</label>
-        <input id="tutor" type="checkbox" name="tutor" checked={cgData.tutor} onChange={handleChange} />
-        <label htmlFor="communication">Open Communication</label>
-        <input id="communication" type="checkbox" name="communication" checked={cgData.communication} onChange={handleChange} />
-        <label>facebook</label>
-        <input type="text" name="facebook" value={cgData.facebook} onChange={handleChange} />
-        <label>instagram</label>
-        <input type="text" name="instagram" value={cgData.instagram} onChange={handleChange} />
-        <label>about</label>
-        <textarea name="about" value={cgData.about} onChange={handleChange} cols="30" rows="10" ></textarea>
-        <button type="submit">BECOME A CAREGIVER</button>
+        <div className="checkbox-div">
+          <label htmlFor="cpr">CPR Certified</label>
+          <input id="cpr" type="checkbox" name="cpr" checked={cgData.cpr} onChange={handleChange}/>
+        </div>
+        <div className="checkbox-div">
+          <label htmlFor="pet">Pet Friendly</label>
+          <input id="pet" type="checkbox" name="pet" checked={cgData.pet} onChange={handleChange} />
+        </div>
+        <div className="checkbox-div">
+          <label htmlFor="driver">Can Drive</label>
+          <input id="driver" type="checkbox" name="driver" checked={cgData.driver} onChange={handleChange} />
+        </div>
+        <div className="checkbox-div">
+          <label htmlFor="englishF">Fluent in English</label>
+          <input id="englishF" type="checkbox" name="englishF" checked={cgData.englishF} onChange={handleChange} />
+        </div>
+        <div className="checkbox-div">
+          <label htmlFor="spanishF">Fluent in Spanish</label>
+          <input id="spanishF" type="checkbox" name="spanishF" checked={cgData.spanishF} onChange={handleChange} />
+        </div>
+        <div className="checkbox-div">
+          <label htmlFor="craft">Arts & Crafts</label>
+          <input id="craft" type="checkbox" name="craft" checked={cgData.craft} onChange={handleChange} />
+        </div>
+        <div className="checkbox-div">
+          <label htmlFor="first_aid">First Aid</label>
+          <input id="first_aid" type="checkbox" name="first_aid" checked={cgData.first_aid} onChange={handleChange} />
+        </div>
+        <div className="checkbox-div">
+          <label htmlFor="tutor">Homework Help</label>
+          <input id="tutor" type="checkbox" name="tutor" checked={cgData.tutor} onChange={handleChange} />
+        </div>
+        <div style={{marginBottom: "5vmin"}} className="checkbox-div">
+          <label htmlFor="communication">Open Communication</label>
+          <input id="communication" type="checkbox" name="communication" checked={cgData.communication} onChange={handleChange} />
+        </div>
+        <input className="cargiver-input" placeholder="Facebook" type="text" name="facebook" value={cgData.facebook} onChange={handleChange} />
+        <input className="cargiver-input" placeholder="Instagram" type="text" name="instagram" value={cgData.instagram} onChange={handleChange} />
+        <textarea className="cargiver-input" name="about" value={cgData.about} onChange={handleChange} cols="28" rows="5" ></textarea>
+        <button id="caregiver-btn" type="submit">Submit</button>
       </form>
     </div>
   );
