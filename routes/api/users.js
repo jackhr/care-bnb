@@ -19,4 +19,6 @@ router.get("/current", usersCtrl.currentUser);
 
 router.get("/caregivers", usersCtrl.getAllCaregivers);
 
+router.get('/caregivers/:id', usersCtrl.getOneCaregiver);
+
 module.exports = router;
