@@ -4,6 +4,7 @@ const favicon = require("serve-favicon");
 const cors = require("cors");
 const logger = require("morgan");
 const upload = require("multer")();
+const errorController = require("./src/utilities/custom-error-handler");
 // const User = require("./models/user");
 
 require("dotenv").config();
@@ -90,6 +91,8 @@ app.get("/*", function (req, res) {
 //     }
 //   });
 // });
+
+app.use(errorController);
 
 const port = process.env.PORT || 3001;
 
