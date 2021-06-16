@@ -3,17 +3,17 @@ import CaregiverProfile from "../../components/CaregiverProfile/CaregiverProfile
 import * as usersAPI from "../../utilities/users-api";
 import * as usersServices from "../../utilities/users-service";
 
-export default function CaregiverPage() {
+export default function CaregiverPage({ caregivers, setCaregivers }) {
   const [data, setData] = useState([]);
   const [user, setUser] = useState({});
 
-  // useEffect(() => {
-  //   async function getAllCaregivers() {
-  //     const caregivers = await usersAPI.getAllCaregivers();
-  //     setData(caregivers);
-  //   }
-  //   getAllCaregivers();
-  // }, []);
+  useEffect(() => {
+    async function getAllCaregivers() {
+      const caregivers = await usersAPI.getAllCaregivers();
+      setCaregivers(caregivers);
+    }
+    getAllCaregivers();
+  }, []);
 
   useEffect(() => {
     async function getThisUser() {

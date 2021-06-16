@@ -10,6 +10,10 @@ export function login(credentials) {
   return sendRequest(`${BASE_URL}/login`, "POST", credentials);
 }
 
+export function newCaregiver(formData) {
+  return sendRequest(`${BASE_URL}/new-caregiver`, "POST", formData, true);
+}
+
 export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
@@ -23,5 +27,5 @@ export function currentUser() {
 }
 
 export function getAllCaregivers() {
-  return sendRequest(BASE_URL);
+  return sendRequest(`${BASE_URL}/caregivers`);
 }

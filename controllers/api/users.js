@@ -8,11 +8,12 @@ const BUCKET = process.env.S3_BUCKET;
 const REGION = process.env.REGION;
 
 module.exports = {
-  create,
   login,
+  create,
+  newCaregiver,
   checkToken,
   allUsers,
-  getAll,
+  getAllCaregivers,
   currentUser,
 };
 
@@ -25,10 +26,46 @@ function checkToken(req, res) {
 
 async function create(req, res) {
   try {
-    const user = await User.create(req.body);
+    const user = await User.create({
+      ...req.body,
+      isCaregiver: false
+    });
     const token = createJWT(user);
     // Yes, we can send back a simple string
     res.json(token);
+  } catch (err) {
+    // Client will check for non-200 status code
+    // 400 = Bad Request
+    res.status(400).json(err);
+  }
+}
+
+async function newCaregiver(req, res) {
+  try {
+    const AWSData = getNewImageUrl(req.file);
+    const user = User.findById(user._id);
+    user.age = req.body.age;
+    user.phone_number = req.body.phone_number;
+    user.best_time = req.body.best_time;
+    user.location = req.body.location;
+    user.rate = req.body.rate;
+    user.cpr = req.body.cpr;
+    user.pet = req.body.pet;
+    user.driver = req.body.driver;
+    user.englishF = req.body.englishF;
+    user.spanishF = req.body.spanishF;
+    user.craft = req.body.craft;
+    user.first_aid = req.body.first_aid;
+    user.tutor = req.body.tutor;
+    user.communication = req.body.communication;
+    user.facebook = req.body.facebook;
+    user.instagram = req.body.instagram;
+    user.about = req.body.about;
+    user.profile_image = AWSData.url;
+    user.AWSkey = AWSData.key;
+    await user.save();
+    const newUsers = await User.find({});
+    res.json(newUsers);
   } catch (err) {
     // Client will check for non-200 status code
     // 400 = Bad Request
@@ -48,7 +85,7 @@ async function login(req, res) {
   }
 }
 
-async function getAll(req, res) {
+async function getAllCaregivers(req, res) {
   try {
     const allCaregivers = await User.find({});
     res.send(allCaregivers);
@@ -60,7 +97,7 @@ async function getAll(req, res) {
 
 async function allUsers(req, res) {
   try {
-    const allUsers = await User.find({});
+    const allUsers = await User.find({ isCaregiver: true });
     console.log(allUsers);
     res.json(allUsers);
   } catch (e) {

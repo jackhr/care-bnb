@@ -44,9 +44,10 @@ const userSchema = new Schema(
       min: 18, //possibly update this based on casualness of platform
     },
     phone_number: {
-      type: String,
+      type: Number,
       trim: true,
-      minlength: 10,
+      min: 10,
+      max: 13
     },
     profile_image: String,
     AWS_KEY: String,
@@ -73,6 +74,7 @@ const userSchema = new Schema(
     tutor: Boolean,
     communication: Boolean,
     about: String, //steve added this
+    isCaregiver: false,
     experiences: [experienceSchema],
   },
   {
