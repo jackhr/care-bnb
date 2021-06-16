@@ -5,18 +5,15 @@
   justify-content: center;
 }
 
-/* hr {
-  color: rgb(79, 79, 79);
-  width: 100%;
-} */
 .horizontal-line {
   background-color: rgb(79, 79, 79);
   width: 100%;
   height: 1px;
 }
-img {
-  width: 600px;
-  height: 700px;
+.prof-image {
+  width: 100vw;
+  max-width: 500px;
+  height: 50vh;
   position: relative;
   top: -50px;
 }
@@ -27,7 +24,7 @@ img {
   background-color: white;
   border-radius: 25px;
   width: 100vw;
-  max-width: 600px;
+  max-width: 500px;
   margin-left: 0;
   padding: 2em;
   position: relative;
@@ -57,20 +54,103 @@ img {
 }
 /* .profile-name {
 } */
-h1 {
+/* h1 {
   font-family: open sans;
   font-weight: 800;
   margin: 0;
-}
-h3 {
+} */
+/* h3 {
   margin: 0;
-}
+} */
 .location {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-button {
-  background-color: #584b53;
-  border-radius: 10px;
+.meet-button {
+  width: 4em;
+  height: 1.5em;
+  font-size: 1.2rem;
+  background: #584b53;
+  border: 1px solid #584b53;
+  box-sizing: border-box;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 3px 5px 5px rgb(123, 123, 123);
+  margin: 2em;
+  padding: 0;
+}
+
+.meet-button:hover {
+  background-color: #80757c;
+}
+.credentials {
+  width: 120px;
+  height: 41px;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  background: #588b8b;
+  box-shadow: 0px 1.53506px 1.53506px rgba(0, 0, 0, 0.25);
+  border-radius: 15.3506px;
+}
+.about-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.meet-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.review-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal1 {
+  display: flex;
+  flex-direction: column;
+}
+.modal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.closeMode {
+  text-decoration: underline;
+  font-size: 1.3rem;
+}
+.closeMode:hover {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.modal-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 3em;
+}
+.modal-button {
+  width: 9em;
+  height: 1.5em;
+  font-size: 1.2rem;
+  background: #584b53;
+  border: 1px solid #584b53;
+  box-sizing: border-box;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 3px 5px 5px rgb(123, 123, 123);
+  margin: 2em;
+  padding: 0;
+}
+
+.modal-button:hover {
+  background-color: #80757c;
 }

@@ -2,6 +2,7 @@ import React,{ useState, useEffect }  from 'react';
 import { Container, Col, Row } from "react-bootstrap";
 import io from "socket.io-client";
 import * as userService from "../../utilities/users-service";
+import './Chat.css'
 
 const socket = io();
 
@@ -71,19 +72,20 @@ const Chat = () => {
   }
 
   return (
+    <div style={{backgroundColor: "#ebd8ca"}}>
     <Container>
       <Row>
         <Col xs={5} style={{ border: "1px solid black" }}>
           <br/>
-          <h6 onClick={enteringRoom} style={{ cursor: "pointer" }}>General Chat</h6>
+          <h1 onClick={enteringRoom} style={{ cursor: "pointer" }}>Chat with your caregiver</h1>
           <br />
-          <p><b>Chat Rooms</b></p>
+          <p><b>Please Choose a Chat Room</b></p>
           <ul style={{ listStyleType: "none" }}>
             <li onClick={enteringRoom} style={{ cursor: "pointer" }}>Room 1</li>
             <li onClick={enteringRoom} style={{ cursor: "pointer" }}>Room 2</li>
             <li onClick={enteringRoom} style={{ cursor: "pointer" }}>Room 3</li>
           </ul>
-          <p><b>Currently Connected Users:</b></p>
+          {/* <p><b>Currently Connected Users:</b></p> */}
           <ul style={{ listStyleType: "none" }}>
             {chatUsers.map((user) => {
               return <li onClick={enteringRoom} style={{cursor:"pointer"}}
@@ -91,16 +93,19 @@ const Chat = () => {
             })}
           </ul>
         </Col>
-        <Col style={{ border: "1px solid black" }}>
-          <p>Chat Messages ({currentRoom})</p>
+        <Col>
+          <h2>Chat Messages ({currentRoom})</h2>
           <form onSubmit={newMessageSubmit}>
+          <br/>
             <input type="text" name="msg" 
               value={chatMessage.msg}
               onChange={handleChange} required style={{ width: "80%" }} />
-            <input type="submit" value="Send" />
+              <br/>
+              <br/>
+            <input type="submit" value="Send" style={{width: "40%"}}/>
           </form>
-          <div id="chatMessages" style={{ border: "1px solid black" }}>
-            Messages
+          <div id="chatMessages">
+            Messages:
             <ul style={{ listStyle:"none" }}>
               {msgList.map((msgList, index) => {
                 return (
@@ -118,6 +123,7 @@ const Chat = () => {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 };
 
